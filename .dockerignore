@@ -1,0 +1,7 @@
+src/node_modules
+src/npm-debug.log
+.git
+.gitignore
+README.md
+.env
+src/chat.db
