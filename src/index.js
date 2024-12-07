@@ -76,8 +76,8 @@ if (cluster.isPrimary) {
     }
   });
 
-  // const port = process.env.PORT;
-  const port = 32044;
+  const port = process.env.PORT;
+  //const port = 32044;
 
   server.listen(port, () => {
     console.log(`server running at http://localhost:${port}`);
