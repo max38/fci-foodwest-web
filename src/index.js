@@ -11,9 +11,9 @@ import { createAdapter, setupPrimary } from '@socket.io/cluster-adapter';
 
 if (cluster.isPrimary) {
   const numCPUs = availableParallelism();
-  for (let i = 0; i < numCPUs; i++) {
+  for (let i = 0; i < numCPUs && i < 4; i++) {
     cluster.fork({
-      PORT: 3000 + i
+      PORT: 32044 + i // 32044
     });
   }
 
@@ -76,7 +76,8 @@ if (cluster.isPrimary) {
     }
   });
 
-  const port = process.env.PORT;
+  // const port = process.env.PORT;
+  const port = 32044;
 
   server.listen(port, () => {
     console.log(`server running at http://localhost:${port}`);
