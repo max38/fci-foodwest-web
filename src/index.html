@@ -4,16 +4,110 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Food West</title>
   <style>
-      body { margin: 0; padding-bottom: 3rem; font-size: 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      body { background: #CEEBDE; margin: 0; padding-bottom: 3rem; font-size: 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
-      #form { background: #DEEFC8; padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 4rem; box-sizing: border-box; backdrop-filter: blur(10px); }
-      #input { border: none; padding: 0 1rem; font-size: 20px; flex-grow: 1; border-radius: 1rem; margin: 0.25rem; }
+      #form { background: #CEEBDE; padding: 0.5rem 2rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 6rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input { border: none; padding: 0 1rem; font-size: 36px; flex-grow: 1; border-radius: 1rem; margin: 0.25rem; }
       #input:focus { outline: none; }
-      #form > button { background: #385a42;font-size: 20px; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 1rem; outline: none; color: #fff; }
+      #form > button { background: #385a42;font-size: 36px; border: none; padding: 0 4rem; margin: 0.25rem; border-radius: 1rem; outline: none; color: #fff; }
 
+      /*
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; background: #FBFFF5; }
       #messages > li:nth-child(odd) { background: #DEEFC8; }
+      */
+
+      ul,li{
+        list-style:none;
+      }
+      ul{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      ul li a{
+        text-decoration:none;
+        color:#000;
+        background:#ffe28c;
+        display:block;
+        height:10em;
+        width:10em;
+        padding:1em;
+        box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+        transition: transform .15s linear;
+      }
+
+
+    .card-big-shadow:before {
+      background-image: url("http://static.tumblr.com/i21wc39/coTmrkw40/shadow.png");
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      bottom: -12%;
+      content: "";
+      display: block;
+      left: -12%;
+      position: absolute;
+      right: 0;
+      top: 0;
+  }
+
+      ul li:nth-child(even) a{
+        position:relative;
+        top:5px;
+        background:#d5e5a3;
+      }
+      ul li:nth-child(3n) a{
+        position:relative;
+        top:-5px;
+        background:#b8d8d8;
+      }
+      ul li:nth-child(5n) a{
+        position:relative;
+        top:-5px;
+        background:#d6c1ab;
+      }
+      ul li:nth-child(7n) a{
+        position:relative;
+        top:-5px;
+        background:#ff8f5e;
+      }
+
+      ul li{
+        margin:1em;
+      }
+
+      ul li a{
+        transform: rotate(-6deg);
+      }
+
+      ul li:nth-child(even) a{
+        transform:rotate(4deg);
+        position:relative;
+        top:5px;
+      }
+      ul li:nth-child(3n) a{
+        transform:rotate(-3deg);
+        position:relative;
+        top:-5px;
+      }
+      ul li:nth-child(5n) a{
+        transform:rotate(5deg);
+        position:relative;
+        top:-10px;
+      }
+
+      ul li a:hover,ul li a:focus{
+        box-shadow:10px 10px 7px rgba(0,0,0,.7);
+        transform: scale(1.25);
+        position:relative;
+        z-index:5;
+      }
+
+      .card-big-shadow {
+        max-width: 320px;
+        position: relative;
+      }
   </style>
 </head>
 <body>
@@ -48,11 +142,30 @@
 
     socket.on('chat message', (msg, serverOffset) => {
       const item = document.createElement('li');
-      item.textContent = msg;
+      const bodyDiv = document.createElement('div');
+      bodyDiv.className = 'card-big-shadow';
+      const link = document.createElement('a');
+      link.href = '#';
+      //const title = document.createElement('h2');
+      //title.textContent = 'Title #1';
+      const text = document.createElement('p');
+      text.textContent = msg;
+    
+      //link.appendChild(title);
+      link.appendChild(text);
+      bodyDiv.appendChild(link);
+      item.appendChild(bodyDiv);
       messages.appendChild(item);
+
+
+
+      // const item = document.createElement('li');
+      // item.textContent = msg;
+      //messages.appendChild(item);
       window.scrollTo(0, document.body.scrollHeight);
       socket.auth.serverOffset = serverOffset;
     });
+  
   </script>
 </body>
 </html>
