@@ -129,7 +129,7 @@
         position:relative;
         background:#d6c1ab;
       }
-      ul li:nth-child(3n) a{
+      ul li:nth-child(4n) a{
         position:relative;
         background:#b8d8d8;
       }
@@ -215,14 +215,14 @@
       link.appendChild(text);
       bodyDiv.appendChild(link);
       item.appendChild(bodyDiv);
-      messages.appendChild(item);
+      messages.insertBefore(item, messages.firstChild);
 
 
 
       // const item = document.createElement('li');
       // item.textContent = msg;
       //messages.appendChild(item);
-      window.scrollTo(0, document.body.scrollHeight);
+      // window.scrollTo(0, document.body.scrollHeight);
       socket.auth.serverOffset = serverOffset;
     });
   
